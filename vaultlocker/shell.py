@@ -37,7 +37,7 @@ def _vault_client(config):
     :param: config: configparser object of vaultlocker config
     :returns: hvac.Client. configured Vault Client object
     """
-    verify_tls = not bool(int(os.getenv("VAULT_SKIP_VERIFY", 0))
+    verify_tls = not bool(int(os.getenv("VAULT_SKIP_VERIFY", 0)))
     client = hvac.Client(url=config.get('vault', 'url'), verify=verify_tls)
     client.auth_approle(config.get('vault', 'approle'),
                         secret_id=config.get('vault', 'secret_id'))
